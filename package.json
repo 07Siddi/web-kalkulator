@@ -2,7 +2,7 @@
   "name": "web-kalkulator",
   "version": "1.0.0",
   "main": "index.js",
- "scripts": {
+  "scripts": {
     "test": "node --test"
   },
   "repository": {
@@ -15,5 +15,8 @@
     "url": "https://github.com/07Siddi/web-kalkulator/issues"
   },
   "homepage": "https://github.com/07Siddi/web-kalkulator#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "node": "^20.19.0"
+  }
 }
