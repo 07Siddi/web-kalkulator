@@ -4,117 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web kalkulator</title>
-    <div id="fakultet">
-        <form>
-            <input name="tall" placeholder="Tall" type="number">
-            <button>Regn ut fakultet</button>
-        </form>
-        <p>
-            Resultatet er: <span class="resultat"></span>
-        </p>
-        <style>
-            #fakultet {
-                border: 2px solid black;
-                padding: 1em;
-            }
-            #fakultet input {
-                font-size: 1.5em;
-                margin: 0.5em;
-                padding: 0.5em;
-            }
-            #fakultet button {
-                font-size: 1.5em;
-                margin: 0.5em;
-            }
-            #fizzbuzz {
-                border: 2px solid black;
-                padding: 1em;
-            }
-            #fizzbuzz input {
-                font-size: 1.5em;
-                margin: 0.5em;
-                padding: 0.5em;
-            }
-            #fizzbuzz button {
-                font-size: 1.5em;
-                margin: 0.5em;
-            }
-            #fibonacci {
-                border: 2px solid black;
-                padding: 1em;
-            }
-            #fibonacci input {
-                font-size: 1.5em;
-                margin: 0.5em;
-                padding: 0.5em;
-            }
-            #fibonacci button {
-                font-size: 1.5em;
-                margin: 0.5em;
-            }
-        </style>
-    <script type="module">
-    import {fakultet} from './fakultet.js'
-
-        function regnUt(evt) {
-            // For å forhindre at nettleseren sender skjemaet:
-            evt.preventDefault()
-        
-            // Vi bruker querySelector for å finne elementene vi trenger:
-            // "#fakultet input" betyr "input-felt i elementet med id 'fakultet'
-            // "#fakultet .resultat" betyr "element med class 'resultat' i
-            //    elementet med id 'fakultet'
-            const input = document.querySelector('#fakultet input')
-            const output = document.querySelector('#fakultet .resultat')
-        
-            // parseInt konverterer en streng til et heltall
-            const tall = parseInt(input.value)
-        
-            output.textContent = fakultet(tall)
-        }
-        
-        // Vi legger til en "event listener" som kjører regnUt-funksjonen når
-        // vi trykker på en knapp (button) i elementet med id 'fakultet'
-        document.querySelector('#fakultet button')
-            .addEventListener('click', e => regnUt(e))</script>
-    </div>
-    <div id="fizzbuzz">
-        <form>
-            <input name="tall" placeholder="Tall" type="number">
-            <button>FizzBuzz</button>
-        </form>
-        <p>
-            Resultatet er: <span class="resultat"></span>
-        </p>
-    </div>
-    <div id="fibonacci">
-        <form>
-            <input name="tall" placeholder="Tall" type="number">
-            <button>Regn ut Fibonacci</button>
-        </form>
-        <p>
-            Resultatet er: <span class="resultat"></span>
-        </p>
-    </div>
     <style>
-        #fizzbuzz {
-            border: 2px solid black;
-            padding: 1em;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        #fizzbuzz input {
-            font-size: 1.5em;
-            margin: 0.5em;
-            padding: 0.5em;
+
+        #fakultet, #fizzbuzz, #fibonacci {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+            margin: 1em;
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.2s;
         }
-        #fizzbuzz button {
-            font-size: 1.5em;
-            margin: 0.5em;
+
+        #fakultet:hover, #fizzbuzz:hover, #fibonacci:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 1em;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            gap: 1em;
+            margin-bottom: 1em;
+        }
+
+        input {
+            flex: 1;
+            padding: 0.8em;
+            font-size: 1.2em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #2196F3;
+        }
+
+        button {
+            padding: 0.8em 1.5em;
+            font-size: 1.2em;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #1976D2;
+            transform: scale(1.05);
+        }
+
+        p {
+            margin: 1em 0 0 0;
+            font-size: 1.2em;
+            color: #666;
+            text-align: center;
+        }
+
+        .resultat {
+            color: #2196F3;
+            font-weight: bold;
+            font-size: 1.3em;
+            display: inline-block;
+            min-width: 50px;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                flex-direction: column;
+            }
+            
+            input, button {
+                width: 100%;
+            }
         }
     </style>
+</head>
+<body>
+    <div id="fakultet">
+        <h2>Fakultet Kalkulator</h2>
+        <form>
+            <input name="tall" placeholder="Skriv inn et tall" type="number">
+            <button>Regn ut fakultet</button>
+        </form>
+        <p>Resultatet er: <span class="resultat"></span></p>
+    </div>
+
+    <div id="fizzbuzz">
+        <h2>FizzBuzz Kalkulator</h2>
+        <form>
+            <input name="tall" placeholder="Skriv inn et tall" type="number">
+            <button>FizzBuzz</button>
+        </form>
+        <p>Resultatet er: <span class="resultat"></span></p>
+    </div>
+
+    <div id="fibonacci">
+        <h2>Fibonacci Kalkulator</h2>
+        <form>
+            <input name="tall" placeholder="Skriv inn et tall" type="number">
+            <button>Regn ut Fibonacci</button>
+        </form>
+        <p>Resultatet er: <span class="resultat"></span></p>
+    </div>
+
     <script type="module">
-    import {fakultet} from './fakultet.js'
-    import {fizzBuzz} from './fizzbuzz.js'
-    import {fibonacci} from './fibonacci.js'
+        import {fakultet} from './fakultet.js'
+        import {fizzBuzz} from './fizzbuzz.js'
+        import {fibonacci} from './fibonacci.js'
+
+        function regnUt(evt) {
+            evt.preventDefault()
+            const input = document.querySelector('#fakultet input')
+            const output = document.querySelector('#fakultet .resultat')
+            const tall = parseInt(input.value)
+            output.textContent = fakultet(tall)
+        }
 
         function regnUtFizzBuzz(evt) {
             evt.preventDefault()
@@ -124,22 +149,17 @@
             output.textContent = fizzBuzz(tall)
         }
 
-        document.querySelector('#fizzbuzz button')
-            .addEventListener('click', e => regnUtFizzBuzz(e))
-    
-    function regnUtFibonacci(evt) {
-        evt.preventDefault()
-        const input = document.querySelector('#fibonacci input')
-        const output = document.querySelector('#fibonacci .resultat')
-        const tall = parseInt(input.value)
-        output.textContent = fibonacci(tall)
-    }
+        function regnUtFibonacci(evt) {
+            evt.preventDefault()
+            const input = document.querySelector('#fibonacci input')
+            const output = document.querySelector('#fibonacci .resultat')
+            const tall = parseInt(input.value)
+            output.textContent = fibonacci(tall)
+        }
 
-    document.querySelector('#fibonacci button')
-        .addEventListener('click', e => regnUtFibonacci(e))
+        document.querySelector('#fakultet button').addEventListener('click', e => regnUt(e))
+        document.querySelector('#fizzbuzz button').addEventListener('click', e => regnUtFizzBuzz(e))
+        document.querySelector('#fibonacci button').addEventListener('click', e => regnUtFibonacci(e))
     </script>
-</head>
-<body>
-    
 </body>
 </html>
